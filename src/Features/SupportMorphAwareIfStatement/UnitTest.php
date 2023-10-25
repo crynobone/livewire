@@ -2,13 +2,15 @@
 
 namespace Livewire\Features\SupportMorphAwareIfStatement;
 
-use Livewire\Livewire;
 use Illuminate\Support\Facades\Blade;
+use Livewire\Livewire;
 use Livewire\Mechanisms\ExtendBlade\ExtendBlade;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class UnitTest extends \Tests\TestCase
 {
-    /** @test */
+    #[Test]
     public function conditional_markers_are_only_added_to_if_statements_wrapping_elements()
     {
         Livewire::component('foo', new class extends \Livewire\Component {
@@ -26,7 +28,7 @@ class UnitTest extends \Tests\TestCase
         $this->assertCount(2, explode('__ENDBLOCK__', $output));
     }
 
-    /** @test */
+    #[Test]
     public function handles_custom_blade_conditional_directives()
     {
         Blade::if('foo', function () {
@@ -45,10 +47,8 @@ class UnitTest extends \Tests\TestCase
         $this->assertOccurrences(1, '__ENDBLOCK__', $output);
     }
 
-    /**
-     * @test
-     * @dataProvider templatesProvider
-     **/
+    #[Test]
+    #[DataProvider('templatesProvider')]
     function foo($occurances, $template, $expectedCompiled = null)
     {
         $compiled = $this->compile($template);
@@ -59,7 +59,7 @@ class UnitTest extends \Tests\TestCase
         $expectedCompiled && $this->assertEquals($expectedCompiled, $compiled);
     }
 
-    public function templatesProvider()
+    public static function templatesProvider()
     {
         return [
             0 => [

@@ -5,6 +5,7 @@ SCRATCH.md
 COMMIT_MSG.aim.txt
 composer.lock
 .phpunit.result.cache
+.phpunit.cache/
 .idea
 phpunit.xml
 

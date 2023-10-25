@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 use Sushi\Sushi;
 
-/** @group morphing */
+#[Group('morphing')]
 class BrowserTest extends \Tests\BrowserTestCase
 {
-    /** @test */
+    #[Test]
     public function can_bind_a_property_from_parent_to_property_from_child()
     {
         Livewire::visit([
@@ -59,7 +61,7 @@ class BrowserTest extends \Tests\BrowserTestCase
         ;
     }
 
-    /** @test */
+    #[Test]
     public function can_bind_a_property_from_parent_array_to_property_from_child()
     {
         Livewire::visit([
@@ -113,7 +115,7 @@ class BrowserTest extends \Tests\BrowserTestCase
         ->assertSeeIn('@child.ephemeral', 'qux');
     }
 
-    /** @test */
+    #[Test]
     public function can_bind_a_property_from_parent_form_to_property_from_child()
     {
         Livewire::visit([
